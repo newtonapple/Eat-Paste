@@ -1,0 +1,15 @@
+!!! 1.0 Strict
+%html{ :lang=>'en_us', 'xml:lang'=>'en_us', :xmlns=>'http://www.w3.org/1999/xhtml'}
+  %head
+    = stylesheet_link_tag 'boilerplate'
+    /[if lte IE 6]
+      = stylesheet_link_tag 'ie6'
+    = javascript_include_tag 'http://ajax.googleapis.com/ajax/libs/jquery/1.3.2/jquery.min.js'
+    %meta{ 'http-equiv'=>'content-type', :content=>'text/html; charset=utf-8' }
+    %title 
+      = @title
+  %body
+    #header
+    #content
+      = yield
+    #footer

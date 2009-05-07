@@ -1,0 +1,6 @@
+#paste
+  - form_for @paste do |f|
+    %label {:for => 'paste_tag_names'}
+      = f.text_field :tag_names
+    = f.text_area :body
+    = submit_tag 'Eat it!'
