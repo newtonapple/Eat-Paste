@@ -1,7 +1,7 @@
 class CreatePastes < ActiveRecord::Migration
   def self.up
     create_table :pastes do |t|
-      t.text :body
+      t.text :body, :default => ''
       t.timestamps
     end
   end

@@ -1,0 +1,10 @@
+.section{:id=>"section-#{section_counter}"}
+  .section-header
+    %h2
+      &= section.title
+    %span.language
+      &= section.language
+  %pre
+    = ''
+    = CodeRay.scan(section.body, section.language).html(:line_numbers => :inline, :css => :class)
+  
