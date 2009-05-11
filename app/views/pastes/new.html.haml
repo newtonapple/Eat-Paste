@@ -1,7 +1,10 @@
 #paste
   - form_for @paste do |f|
-    %label{:for => 'paste_tag_names'}
-      tags:
-      = f.text_field :tag_names
     = f.text_area :body
+    %label{:for => 'default_language'}
+      Default language: 
+      = f.select :default_language, Uv.syntaxes
+    %label{:for => 'paste_tag_names'}
+      Tags: 
+      = f.text_field :tag_names
     = submit_tag 'Eat it!'
