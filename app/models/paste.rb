@@ -47,7 +47,7 @@ class Paste < ActiveRecord::Base
   end  # Section
   
   def sections
-    @sections ||= Section.parse(body)
+    @sections ||= Section.parse(body, default_language)
   end
   
   private 

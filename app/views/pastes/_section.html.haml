@@ -3,6 +3,6 @@
     %h2
       &= section.title
     %span.language 
-      &=  "( #{section.language} )" 
+      &= "( #{section.language} )" 
   .section-body
     ~ Uv.parse section.body, 'xhtml', section.language, true, 'dawn'

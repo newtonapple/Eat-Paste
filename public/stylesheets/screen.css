@@ -22,54 +22,50 @@ body,h1,h2,h3,h4,h5,h6,p,ul,ol,dl,input,textarea { font-family: "Helvetica Neue"
 /* HEADINGS */
 h1 { font-size: 40px; line-height: 50px; }
 h2 { font-size: 30px; line-height: 40px; }
-h3 { font-size: 20px; line-height: 30px; }
-h4 { font-size: 14px; line-height: 20px; }
-h5 { font-size: 14px; line-height: 20px; }
-h6 { font-size: 14px; line-height: 20px; }
 
 /* TEXT ELEMENTS */
 p, ul, ol, dl { margin-bottom: 20px; font-size: 14px; line-height: 20px; }
 ul, ol { padding-left: 20px;}
 ul { list-style-type: circle; }
 ol { list-style-type: decimal; }
-dl dt { font-weight: bold; }
-dl dd { padding-left: 10px; }
-abbr, acronym { text-decoration: underline; }
 a { color: #BBB; text-decoration: none; }
 a:hover { text-decoration: underline; }
-blockquote { margin: 20px 0; padding-left: 10px; }
-dfn { font-style: italic; font-weight: bold; }
-pre, code { margin: 20px 0; white-space: pre; }
-pre, code, tt { font: 10px monospace; line-height: 20px; } 
-tt { display: block; margin: 20px 0; line-height: 20px; }
-
-/* TABLES */
-table { margin-bottom: 20px; }
-th,td { padding: 5px 10px 5px 0; }
-
+pre, code { margin: 20px 0; white-space: pre; font: 10px monospace; line-height: 20px; }
 
 /* -------------------------------------------------------------- 
    FORMS
 -------------------------------------------------------------- */
 
-/*label { font-weight: bold; }*/
-fieldset { padding: 9px; margin-bottom: 20px; border: 1px solid #ddd; }
-legend { padding: 0 10px; font-weight: bold; font-size: 14px; line-height: 20px; }
 textarea { padding: 10px; }
+
+
+/* -------------------------------------------------------------- 
+   LAYOUT & STYLES
+-------------------------------------------------------------- */
 
 body { background-color: #DDD; }
 
-#header { color: #BBB; background-color: #444; border-bottom: 3px solid #999; }
+#header { color: #BBB; background-color: #444; border-bottom: 3px solid #999; margin-bottom: 3em;}
   #header h1 { font-size: 1.8em; margin-left: 50px; }
 
 #paste { margin: auto 50px; }
-  .section { border: 1px solid #C4C4C4; margin-top: 1em; }
-    .section-header{ background-color: #EFEFEF; border-bottom: 1px solid #C4C4C4; padding-left: 1em; }
-    .section-header h2 { display: inline; color: #555; font-size: 1.1em; }
-    .section-header .language { color: #999; }  
-
-   .new_paste label, .new_paste textarea { margin: 1em auto;} 
-   .new_paste textarea { display:block;  width:100%; height:400px;}
-   .new_paste label { color: #777; padding-right: 0.5em;}
+  .section {  margin: 2em auto; }
+    .section-header { 
+      background-color: #444; 
+      border-bottom: 3px solid #BBB; 
+      padding: 0.3em 2em; 
+      line-height: 2em; 
+      margin-left: -0.5em; 
+      margin-right: -0.5em; 
+      margin-bottom: -3.5em; 
+      position: relative;
+    }
+    
+    .section-header h2, .section-header .language { display: inline;}
+    .section-header h2 { color: #AAA; font-size: 1.1em; line-height: 1em;}
+    .section-header .language { color: #888; }
+   .new_paste textarea { margin: 1em auto;} 
+   #paste textarea { display:block;  width:100%; height:450px; font-family: monospace;}
+   #paste label { color: #777; display: inline-block; padding-right: 0.5em;}
     
   
