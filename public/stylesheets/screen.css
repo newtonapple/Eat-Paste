@@ -45,11 +45,11 @@ textarea { padding: 10px; }
 
 body { background-color: #DDD; }
 
-#header { color: #BBB; background-color: #444; border-bottom: 3px solid #999; margin-bottom: 3em;}
+#header { color: #BBB; background-color: #444; border-bottom: 3px solid #999; margin-bottom: 2em;}
   #header h1 { font-size: 1.8em; margin-left: 50px; }
 
 #paste { margin: auto 50px; }
-  .section {  margin: 2em auto; }
+  .section {  margin: 1em auto; }
     .section-header { 
       background-color: #444; 
       border-bottom: 3px solid #BBB; 

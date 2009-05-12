@@ -1,22 +1,9 @@
 class Paste < ActiveRecord::Base
-  has_many :taggings
-  has_many :tags, :through => :taggings
+  has_many :taggings, :dependent => :delete_all
+  has_many :tags, :through => :taggings, :order => 'tags.name ASC'
   
-  before_save :clean_body
+  before_save :clean_body#, :save_new_tags
   
-  
-  def tag_names
-    taggings.empty? ? '' : tags.collect{|tag| tag.name}.join(', ')
-  end
-  
-  def tag_names=( tag_names )
-    tag_names = tag_names.split(',').collect(&:strip)
-  end
-  
-  def body=( body )
-    body.strip!
-    self[:body] = body
-  end
   
   # Instead of actual association, we'll use a virtual Section object
   class Section
@@ -50,12 +37,35 @@ class Paste < ActiveRecord::Base
     @sections ||= Section.parse(body, default_language)
   end
   
+  
+  def tag_names
+    taggings.empty? ? '' : tags.collect{|tag| tag.name}.join(', ')
+  end
+  
+  
+  def tag_names=( tag_names )
+    self.tags = Tag.get_all_new_or_by_names normalize_tag_names(tag_names)
+  end
+  
+  
+  def body=( body )
+    body.strip!
+    self[:body] = body
+  end
+  
+  
   private 
+  
     def clean_body
       self.body = body.strip
     end
     
-    def sectionfy
-      
+    def normalize_tag_names( tag_names )
+      tag_names = tag_names.split(',')
+      tag_names.map(&:strip!)
+      tag_names.uniq!
+      tag_names.reject!(&:empty?)
+      tag_names.to(9)  # max 10 tags
     end
+    
 end

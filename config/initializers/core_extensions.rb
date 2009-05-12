@@ -21,3 +21,11 @@ class String
     end
   end
 end
+
+
+class Object
+  def in?(arrayish,*more)
+    arrayish = more.unshift(arrayish) unless more.empty?
+    arrayish.include?(self)
+  end
+end
