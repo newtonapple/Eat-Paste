@@ -2,7 +2,7 @@ class Paste < ActiveRecord::Base
   has_many :taggings, :dependent => :delete_all
   has_many :tags, :through => :taggings, :order => 'tags.name ASC'
   
-  before_save :clean_body#, :save_new_tags
+  before_save :clean_body
   
   
   # Instead of actual association, we'll use a virtual Section object
@@ -65,7 +65,7 @@ class Paste < ActiveRecord::Base
       tag_names.map(&:strip!)
       tag_names.uniq!
       tag_names.reject!(&:empty?)
-      tag_names.to(9)  # max 10 tags
+      tag_names.to(4)  # max 5 tags
     end
     
 end
