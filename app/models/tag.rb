@@ -10,6 +10,6 @@ class Tag < ActiveRecord::Base
   
   
   def name=( name )
-    self[:name] = name.to_s.strip
+    self[:name] = name.to_s.strip.downcase
   end
 end

@@ -11,7 +11,9 @@
       = @title
   %body
     #header
-      %h1= link_to 'Eat Some Paste', new_paste_path
+      %h1
+        = link_to('Eat', new_paste_path) 
+        = link_to('Some Paste', pastes_path)
     #content
       = yield
     #footer

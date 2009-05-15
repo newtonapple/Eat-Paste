@@ -1,16 +1,26 @@
 require File.expand_path(File.dirname(__FILE__) + '/../spec_helper')
 
 describe PastesController do
-
-  #Delete these examples and add some real ones
+  integrate_views
+  
   it "should use PastesController" do
     controller.should be_an_instance_of(PastesController)
   end
 
 
   describe "GET 'index'" do
+    before :each do 
+      @tag_name_inputs = ['foo, bar, baz', 'ruby, python, perl', 'fun, boring']
+      @bodies = [ 'foo', 'ruby', 'boring' ]
+      @pastes = []
+      @bodies.each_with_index do |body, i|
+        @pastes << Paste.create(:body => body, :tag_names => @tag_name_inputs[i])
+      end
+    end
+    
     it "should be successful" do
       get 'index'
+      assigns[:pastes].should == @pastes.reverse
       response.should be_success
     end
   end
@@ -30,12 +40,14 @@ describe PastesController do
   end
 
   describe "GET 'show'" do
+    before :each do 
+      @paste = Paste.create :body => 'class A < B; def foo puts "foo"; end; end', :tag_names => 'foo, bar, baz'
+    end
+    
     it "should be successful" do
-      paste = mock_model(Paste, :id => 1)
-      Paste.should_receive(:find).with("1").and_return(paste)
-      get :show, :id => "1"
+      get :show, :id => @paste.id
+      assigns[:paste].should == @paste
       response.should be_success
-      assigns[:paste].should == paste
     end
   end
 end

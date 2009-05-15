@@ -2,7 +2,9 @@ class Paste < ActiveRecord::Base
   has_many :taggings, :dependent => :delete_all
   has_many :tags, :through => :taggings, :order => 'tags.name ASC'
   
-  before_save :clean_body
+  before_save :clean_body, :generate_preview
+  
+  default_scope :order => 'id DESC'
   
   
   # Instead of actual association, we'll use a virtual Section object
@@ -33,6 +35,8 @@ class Paste < ActiveRecord::Base
     end
   end  # Section
   
+  
+  
   def sections
     @sections ||= Section.parse(body, default_language)
   end
@@ -59,6 +63,18 @@ class Paste < ActiveRecord::Base
     def clean_body
       self.body = body.strip
     end
+    
+    
+    def generate_preview
+      i, lines = 0, []
+      body.each_line do |line|
+        break if i >= 5
+        lines << line
+        i += 1
+      end
+      self.preview = lines.join()
+    end
+    
     
     def normalize_tag_names( tag_names )
       tag_names = tag_names.split(',')

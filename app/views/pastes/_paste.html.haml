@@ -1,0 +1,8 @@
+.paste{:id => paste.id}
+  %span.language= "#{paste.default_language}"
+  = link_to 'more...', paste
+  %span.created_at= "#{time_ago_in_words(paste.created_at)} ago"
+  .paste-body
+    ~ syntax_highlight paste.preview, paste.default_language
+  = render :partial => 'tags', :object => paste.tags  
+  

@@ -2,6 +2,7 @@ class PastesController < ApplicationController
   caches_page :show
   
   def index
+    @pastes = Paste.all
   end
 
   def create

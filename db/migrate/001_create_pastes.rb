@@ -3,6 +3,7 @@ class CreatePastes < ActiveRecord::Migration
     create_table :pastes do |t|
       t.string :default_language, :limit => 50, :default => 'plain_text'
       t.text :body, :default => ''
+      t.string :preview, :limit => 1024
       t.timestamps
     end
   end
