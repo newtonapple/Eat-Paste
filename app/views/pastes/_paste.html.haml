@@ -3,6 +3,6 @@
   = link_to 'more...', paste
   %span.created_at= "#{time_ago_in_words(paste.created_at)} ago"
   .paste-body
-    ~ syntax_highlight paste.preview, paste.default_language
+    ~ paste.preview
   = render :partial => 'tags', :object => paste.tags  
   

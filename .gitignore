@@ -5,6 +5,7 @@ doc/api
 doc/app
 
 db/schema.rb
+db/*.sql
 
 config/database.yml
 config/memcached.yml

@@ -3,6 +3,6 @@
     %h2
       &= section.title
     %span.language 
-      &= "( #{section.language} )" 
+      = "( #{h section.language} )" 
   .section-body
-    ~ syntax_highlight section.body, section.language
+    ~ syntax_highlight section.body, section.highlighting_language

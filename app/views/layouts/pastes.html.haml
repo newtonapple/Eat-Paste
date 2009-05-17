@@ -14,6 +14,11 @@
       %h1
         = link_to('Eat', new_paste_path) 
         = link_to('Some Paste', pastes_path)
+        - form_tag search_pastes_path, :method => :get do 
+          %label{:for => 'q'}
+            Search: 
+            = text_field_tag :q, h(params[:q])
+            = submit_tag :search, :class => 'search'
     #content
       = yield
     #footer

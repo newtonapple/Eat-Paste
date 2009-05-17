@@ -12,6 +12,18 @@ describe Paste do
   end
   
   
+  # describe Paste, 'search' do
+  #   
+  # end
+  
+  
+  describe Paste, 'parse_search_query' do
+    it 'parses tags with a query begins with t[tag1, tag2, tag3]' do
+      tags, query = Paste.parse_search_query( 't[hello, hello world, hello word!, HELLO WORLD!, fun!, truncated]' )
+      query.should be_blank?
+      
+    end
+  end
   
   
   describe Paste::Section do 
@@ -29,7 +41,7 @@ describe Paste do
           def baz():
             print('baz')".strip
           
-      body = ["## Section 1 [ruby]  ", ruby_body, "## Section 2 [python]  ", python_body, "## Unknown Section [unknown]"].join("\n")
+      body = ["## Section 1 [ruby]  ", ruby_body, "## Section 2 [python]  ", python_body, "## Unknown Section [unknown langauge]"].join("\n")
       paste = Paste.new(:body => body)
       sections = paste.sections
       sections.size.should == 3
@@ -38,7 +50,7 @@ describe Paste do
       sections[2].title.should == 'Unknown Section'
       sections[0].language.should == "ruby"
       sections[1].language.should == 'python'
-      sections[2].language.should == 'unknown'
+      sections[2].language.should == 'unknown language'
       sections[0].body.should == "#{ruby_body}\n"
       sections[1].body.should == "#{python_body}\n"
       sections[2].body.should == ''
@@ -57,7 +69,7 @@ describe Paste do
   end
   
   
-  describe Paste, 'tag_names=' do
+  describe Paste, '#tag_names=' do
     before(:each) do
       @existing_tag_size = 3
       @existing_tag_names = "foo, bar,  baz"
