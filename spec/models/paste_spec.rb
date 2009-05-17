@@ -41,7 +41,7 @@ describe Paste do
           def baz():
             print('baz')".strip
           
-      body = ["## Section 1 [ruby]  ", ruby_body, "## Section 2 [python]  ", python_body, "## Unknown Section [unknown langauge]"].join("\n")
+      body = ["## Section 1 [ruby]  ", ruby_body, "## Section 2 [python]  ", python_body, "## Unknown Section [unknown language]"].join("\n")
       paste = Paste.new(:body => body)
       sections = paste.sections
       sections.size.should == 3
