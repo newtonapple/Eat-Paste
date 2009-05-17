@@ -108,7 +108,7 @@ class Paste < ActiveRecord::Base
   
   
   def default_language=( language )
-    self.default_language = self.class.language_or_default(language)
+    self[:default_language] = self.class.language_or_default(language)
   end
   
   
