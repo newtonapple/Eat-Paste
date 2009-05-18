@@ -20,11 +20,12 @@ class Paste < ActiveRecord::Base
     
   end
   
-  
+  TAGS_QUERY = /^(?:t\[(.+)?\])?(.*)/.freeze
   def self.parse_search_query( query )
-    if query =~ /^(?:t\[(.+)?\])?(.*)/
+    if query =~ TAGS_QUERY
       tags  = $1 ? Tag.comma_seperated_names_to_array($1) : []      
-      query = $2
+      query = $2.strip
+      [tags, query]
     else
       raise 'search query parser bug!'
     end

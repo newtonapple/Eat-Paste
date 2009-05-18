@@ -18,11 +18,35 @@ describe Paste do
   
   
   describe Paste, 'parse_search_query' do
-    it 'parses tags with a query begins with t[tag1, tag2, tag3]' do
-      tags, query = Paste.parse_search_query( 't[hello, hello world, hello word!, HELLO WORLD!, fun!, truncated]' )
-      query.should be_blank?
-      
+    
+    it 'parses tags with a query begins with t[tag1, tag2, tag3] but empty query' do
+      tags, query = *Paste.parse_search_query( 't[aaa, bbb, ccc, ddd, eee]' )
+      tags.should == ['aaa', 'bbb', 'ccc', 'ddd', 'eee']
+      query.should be_empty
     end
+    
+    
+    it 'parses query without tags' do
+      tags, query = *Paste.parse_search_query( 'ruby on rails' )
+      tags.should be_empty
+      query.should == 'ruby on rails'
+    end
+    
+    
+    it "ignores the t[] when the query doesn't begin with t[]" do
+      tags, query = *Paste.parse_search_query( '  t[aaa, bbb, ccc, ddd, eee]' )
+      tags.should be_empty
+      query.should == 't[aaa, bbb, ccc, ddd, eee]'
+    end
+    
+    
+    
+    it 'noramlizes tags & query' do
+      tags, query = *Paste.parse_search_query( 't[hello, hello world, hello world!, HELLO WORLD!, fun!,   abc,  truncated]   ruby on rails  ' )
+      tags.should == ['hello', 'hello world', 'hello world!', 'fun!', 'abc']
+      query.should == 'ruby on rails'
+    end
+    
   end
   
   

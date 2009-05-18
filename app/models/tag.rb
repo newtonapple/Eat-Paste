@@ -12,6 +12,7 @@ class Tag < ActiveRecord::Base
   def self.comma_seperated_names_to_array( names, size = 5 )
     names = names.split(',')
     names.map(&:strip!)
+    names.map(&:downcase!)
     names.uniq!
     names.reject!(&:empty?)
     names.to(size - 1)  # max 5 tags
