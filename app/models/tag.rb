@@ -19,6 +19,11 @@ class Tag < ActiveRecord::Base
   end
   
   
+  def self.ids_by_names( names )
+    find(:all, :select=>'id', :conditions=>{:name=>names}).map(&:id)
+  end
+  
+  
   def name=( name )
     self[:name] = name.to_s.strip.downcase
   end

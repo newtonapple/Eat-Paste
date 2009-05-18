@@ -6,6 +6,7 @@ class Paste < ActiveRecord::Base
   having :linguistics, :search, :sections
   
   default_scope :order => 'id DESC'
+  named_scope :previews, :select => "pastes.id, pastes.default_language, pastes.preview, pastes.created_at"
   
   
   def tag_names

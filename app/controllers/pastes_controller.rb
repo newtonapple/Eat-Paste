@@ -3,7 +3,7 @@ class PastesController < ApplicationController
 
   
   def index
-    @pastes = Paste.all :select => "id, default_language, preview, created_at"
+    @pastes = Paste.previews.paginate(:page => params[:page])
   end
 
 
@@ -36,7 +36,7 @@ class PastesController < ApplicationController
   
   
   def search
-    
+    @pastes = Paste.previews.search(params[:q]).paginate(:page => params[:page]) 
   end
   
 end

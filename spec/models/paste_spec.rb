@@ -12,9 +12,56 @@ describe Paste do
   end
   
   
-  # describe Paste, 'search' do
-  #   
-  # end
+  describe Paste, 'search' do
+    before :each do
+      Paste.delete_all
+      Tagging.delete_all
+      Tag.delete_all
+      @ruby_pastes = [
+        Paste.create!(:body => "Ruby does not scale.", :default_language => 'ruby', :tag_names => 'ruby, scale'),
+        Paste.create!(:body => "Ruby is a programmer's best friend.", :default_language => 'plain_text', :tag_names => 'ruby, programmer, best friend')
+      ].reverse
+      
+      @python_pastes = [
+        Paste.create!(:body => "Python is very elegant.", :default_language => 'python', :tag_names => 'python, programming'),
+        Paste.create!(:body => "Python 3.0's file IO can be slow.", :default_language => 'python', :tag_names => 'python, file, io, programming')
+      ].reverse
+      
+    end
+    
+    it 'searches with only tags' do
+      rubies = Paste.search 't[ruby]'
+      rubies.to_a.should == @ruby_pastes
+      
+      rubies = Paste.search 't[best friend, ruby]'
+      rubies.to_a.size.should == 1
+      rubies[0].should == @ruby_pastes[0]
+      
+      pythons = Paste.search 't[python, programming]'
+      pythons.to_a.should == @python_pastes
+    end
+    
+    
+    it 'searches without tags' do
+      Paste.search('ruBy').should == @ruby_pastes
+      Paste.search('scale')[0].should == @ruby_pastes[1]
+      Paste.search('python').should == @python_pastes
+      Paste.search('elegant')[0].should == @python_pastes[1]
+      Paste.search('slow')[0].should == @python_pastes[0]
+    end
+    
+    
+    it 'searches with tags' do
+      Paste.search('t[ruby] scale')[0].should == @ruby_pastes[1]
+    end
+    
+    
+    it 'returns nothing when tags do not match' do
+      Paste.search('t[ruby python]').to_a.should be_empty
+      Paste.search('t[ruby, python]').to_a.should be_empty
+    end
+    
+  end # Paste.search
   
   
   describe Paste, 'parse_search_query' do
@@ -47,7 +94,7 @@ describe Paste do
       query.should == 'ruby on rails'
     end
     
-  end
+  end # Paste.parse_search_query
   
   
   describe Paste::Section do 
@@ -90,7 +137,7 @@ describe Paste do
       section.title.should 
     end
     
-  end
+  end  # Paste::Section
   
   
   describe Paste, '#tag_names=' do
@@ -119,6 +166,6 @@ describe Paste do
       paste.reload
       paste.tag_names.should == tag_names_array.join(', ')
     end
-  end
+  end # Paste#tag_names
   
 end

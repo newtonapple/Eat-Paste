@@ -14,13 +14,16 @@ describe PastesController do
       @bodies = [ 'foo', 'ruby', 'boring' ]
       @pastes = []
       @bodies.each_with_index do |body, i|
-        @pastes << Paste.create(:body => body, :tag_names => @tag_name_inputs[i])
+        @pastes << Paste.create!(:body => body, :tag_names => @tag_name_inputs[i])
       end
     end
     
     it "should be successful" do
       get 'index'
-      assigns[:pastes].should == @pastes.reverse
+      @pastes.reverse.each_with_index do |expected_paste, i|
+        assigns[:pastes][i].id == expected_paste.id
+        assigns[:pastes][i].preview == expected_paste.preview
+      end
       response.should be_success
     end
   end

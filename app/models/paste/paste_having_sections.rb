@@ -31,7 +31,7 @@ class Paste < ActiveRecord::Base
     
     
     def highlighted_body
-      Paste.syntax_highlight(body, default_language)
+      Paste.syntax_highlight(body, highlighting_language)
     end
     
     

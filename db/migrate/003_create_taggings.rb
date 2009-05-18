@@ -6,6 +6,8 @@ class CreateTaggings < ActiveRecord::Migration
       t.timestamps
     end
     add_index :taggings, [:paste_id, :tag_id], :unique => true
+    add_index :taggings, [:tag_id]
+    add_index :taggings, [:paste_id]
   end
 
   def self.down
