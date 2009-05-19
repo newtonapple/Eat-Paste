@@ -4,5 +4,4 @@
   %span.created_at= "#{time_ago_in_words(paste.created_at)} ago"
   .paste-body
     ~ paste.preview
-  = render :partial => 'tags', :object => paste.tags  
-  
+  = render :partial => 'tags', :object => paste.tags

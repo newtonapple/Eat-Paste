@@ -1,4 +1,5 @@
 -unless tags.blank?
   %ul.tags
-    = list_of tags do |tag|
-      = link_to h(tag.name), search_pastes_path(:q => "t[#{h tag.name}]")
+    - tags.each do |tag|
+      %li{:class => @tag_names.try(:[], tag.name) ? 'matched' : nil}
+        = link_to h(tag.name), search_pastes_path(:q => "t[#{h tag.name}]")

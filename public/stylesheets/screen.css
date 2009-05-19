@@ -56,7 +56,7 @@ ul.tags { margin: 0; padding:0; }
     -moz-border-radius: 5px;
     -webkit-border-radius: 5px;
   }
-
+  
 ul.tags a {
   color: #555;
   padding: 3px;
@@ -107,6 +107,11 @@ ul.tags a {
     padding: 2px;
     margin-bottom: 1em; 
   }
+  
+    #pastes ul.tags li.matched {
+      border-color: #444;
+      background-color: #444;
+    }
   
   #pastes ul.tags li a { 
     color: #999; 
