@@ -1,12 +1,12 @@
 class Paste < ActiveRecord::Base
-  before_save :clean_body, :generate_preview
+  before_save :generate_line_count, :generate_preview
   
   has_many :taggings, :dependent => :delete_all
   has_many :tags, :through => :taggings, :order => 'tags.name ASC'
   having :linguistics, :search, :sections
   
   default_scope :order => 'id DESC'
-  named_scope :previews, :select => "pastes.id, pastes.default_language, pastes.preview, pastes.created_at"
+  named_scope :previews, :select => "pastes.id, pastes.line_count, pastes.default_language, pastes.preview, pastes.created_at"
   
   
   def tag_names
@@ -31,9 +31,9 @@ class Paste < ActiveRecord::Base
   
   
   private 
-  
-    def clean_body
-      self.body = body.strip
+    
+    def generate_line_count
+      self.line_count = body.split("\n").size
     end
     
     

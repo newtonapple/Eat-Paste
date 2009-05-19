@@ -1,3 +1,9 @@
 #paste
-  = render :partial => 'tags', :object => @paste.tags
+  #paste-header
+    
+    = render :partial => 'tags', :object => @paste.tags
+    = link_to 'copy', paste_path(@paste, :format => 'text'), :class => 'copy', :title => 'copy to clipboard'
+    = link_to "( #{pluralize(@paste.line_count, 'line')} )", paste_path(@paste)
+    = timeago(@paste.created_at, :class=>'created_at')
+  %div{:style=>"clear:both"}
   = render :partial => 'section', :collection => @paste.sections

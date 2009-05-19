@@ -31,6 +31,7 @@ class PastesController < ApplicationController
     @paste = Paste.find params[:id]
     respond_to do |wants|
       wants.html
+      wants.text { render :text => @paste.body }
     end
   end
   

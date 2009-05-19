@@ -73,6 +73,20 @@ div.pagination { margin-bottom: 1em; }
   }  
   div.pagination a { padding:0.2em 0.5em;  /* better usability */ }
   div.pagination .disabled { color: #BBB; }
+
+/* Copy */
+a.copy { 
+  background:transparent url(/images/clip.png) no-repeat scroll 0 -7px;
+  padding-left: 28px;
+  padding-right: 0.25em;
+
+}
+
+/* Time Stamp */
+.created_at {
+  color: #BBB;
+  font-size: 0.8em;
+}
   
   
 #header { 
@@ -104,6 +118,7 @@ div.pagination { margin-bottom: 1em; }
   clear: both;
 }
 
+/* pastes */
 #pastes .paste {  
   background-color:#EFEFEF; 
   border: 1px solid #C4C4C4;  
@@ -111,14 +126,7 @@ div.pagination { margin-bottom: 1em; }
   padding: 1em 1em 0; 
   clear:both ;
 } 
-
-  #pastes .language { margin-right: 0.5em; }
   
-  #pastes .created_at {
-    color: #BBB;
-    float: right;
-    font-size: 0.8em;
-  }
   
   #pastes ul.tags li { 
     border-color: #BBB; 
@@ -135,31 +143,42 @@ div.pagination { margin-bottom: 1em; }
     color: #999; 
     font-size: 0.8em; 
   } 
-  
+
+
   #pastes pre { 
     overflow-x: auto; 
     overflow-y:hidden;
     margin-bottom: 1em;
   }
   
-  #paste textarea { 
-    display:block;
-    width:100%;
-    height:450px;
-    font-family: monospace;
-  }
-  #paste label { 
-    color: #777; 
-    display: inline-block; 
-    padding-right: 0.5em;
-  }
+  #pastes .created_at {
+      float: right;
+  } 
   
-  #paste pre { 
-    border: 1px solid #C4C4C4; 
-    margin-top: 0.5em; padding: 
-    1em; padding-top: 4.5em;
-  }
-    
+/* paste   */
+#paste textarea { 
+  display:block;
+  width:100%;
+  height:450px;
+  font-family: monospace;
+}
+#paste label { 
+  color: #777; 
+  display: inline-block; 
+  padding-right: 0.5em;
+}
+
+#paste pre { 
+  border: 1px solid #C4C4C4; 
+  margin-top: 0.5em; padding: 
+  1em; padding-top: 4.5em;
+}
+
+  #paste #paste-header {  line-height: 1.2em; } 
+  #paste #paste-header .tags {  float: right; } 
+  #paste #paste-header .copy {  float: left; } 
+/*  #paste #paste-header .created_at  {  display: inline;}*/
+  
   .section {  margin-top: 1em; margin-bottom: 2em; }
     .section-header { 
       background-color: #444; 
@@ -171,7 +190,7 @@ div.pagination { margin-bottom: 1em; }
       margin-bottom: -3.3em; 
       position: relative;
     }
-    
+  
     .section-header h2, .section-header .language {  display: inline; }
     .section-header h2 { 
       color: #CCC; 
@@ -179,6 +198,6 @@ div.pagination { margin-bottom: 1em; }
       line-height: 1em;
       padding-right: 0.5em;
     }
-    
+  
     .section-header .language { color: #AAA; font-style: italic; }
     .new_paste textarea { margin: 1em auto;} 

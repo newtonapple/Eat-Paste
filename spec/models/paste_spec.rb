@@ -3,12 +3,17 @@ require File.expand_path(File.dirname(__FILE__) + '/../spec_helper')
 describe Paste do
   before(:each) do
     @valid_attributes = {
-      :body => "value for body"
+      :default_language => 'plain_text',
+      :body => "Ruby and Python are two of my favorite programming languages.\nI love them!\nYou should try 'em!\n",
+      :tag_names => 'ruby, python, programming languages'
     }
   end
 
   it "should create a new instance given valid attributes" do
-    Paste.create!(@valid_attributes)
+    paste = Paste.create!(@valid_attributes)
+    paste.tags.size.should == 3
+    paste.line_count.should == 3
+    paste.preview.should_not be_blank  
   end
   
   

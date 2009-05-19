@@ -6,6 +6,7 @@ class CreatePastes < ActiveRecord::Migration
         `default_language` varchar(50) default 'plain_text',
         `body` mediumtext,
         `preview` text,
+        `line_count` int(11),
         `created_at` datetime default NULL,
         `updated_at` datetime default NULL,
         PRIMARY KEY  (`id`),

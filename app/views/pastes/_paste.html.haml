@@ -1,6 +1,7 @@
 .paste{:id => dom_id(paste)}
   %span.language= "#{paste.default_language}"
-  = link_to 'more...', paste
+  = link_to 'copy', paste_path(paste, :format => 'text'), :class => 'copy', :title => 'copy to clipboard'
+  = link_to "( #{pluralize(paste.line_count, 'line')} )", paste_path(paste)
   = timeago(paste.created_at, :class=>'created_at')
   .paste-body
     ~ paste.preview
