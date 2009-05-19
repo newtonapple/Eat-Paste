@@ -3,7 +3,7 @@ class PastesController < ApplicationController
 
   
   def index
-    @pastes = Paste.previews.paginate(:page => params[:page], :count => {:select=>:id})
+    @pastes = Paste.previews.paginate(:page => params[:page], :count => {:select=>:id}, :per_page => 20)
   end
 
 
@@ -38,7 +38,7 @@ class PastesController < ApplicationController
   def search
     @tag_names, @query = *Paste.parse_search_query(params[:q])
     @tag_names = @tag_names.index_by(&:to_s)
-    @pastes = Paste.previews.search(params[:q]).paginate(:page => params[:page], :count => {:select=>'pastes.id'}) 
+    @pastes = Paste.previews.search(params[:q]).paginate(:page => params[:page], :count => {:select=>'pastes.id'}, :per_page => 20) 
   end
   
 end

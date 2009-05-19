@@ -45,6 +45,8 @@ textarea { padding: 10px; }
 
 body { background-color: #DDD; }
 
+
+/* Tags */
 ul.tags { margin: 0; padding:0; }
   ul.tags li { 
     display: inline-block;
@@ -62,6 +64,17 @@ ul.tags a {
   padding: 3px;
 }
 
+/* Pagination */
+div.pagination { margin-bottom: 1em; }
+  div.pagination a, div.pagination span {
+    border: 1px solid #BBB;
+    padding: 0.2em 0.5em;
+    font-size: 0.85em;
+  }  
+  div.pagination a { padding:0.2em 0.5em;  /* better usability */ }
+  div.pagination .disabled { color: #BBB; }
+  
+  
 #header { 
   color: #BBB; background-color: #444; 
   border-bottom: 3px solid #999; 
@@ -72,7 +85,12 @@ ul.tags a {
   
   #header form {  display: inline; float:right; margin-right: 50px;}
     #header form label { font-size: 0.5em; }
-  #header input#q { border: 1px solid #FFF; }
+  #header input#q { 
+    border: 1px solid #FFF; 
+    -webkit-appearance: searchfield; 
+    -webkit-box-sizing: border-box;    
+
+  }
   #header input.search { display:none; }
   
   /* Clear float w/o extra markups */

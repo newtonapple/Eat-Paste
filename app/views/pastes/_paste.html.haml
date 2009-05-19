@@ -1,7 +1,7 @@
 .paste{:id => dom_id(paste)}
   %span.language= "#{paste.default_language}"
   = link_to 'more...', paste
-  %span.created_at= "#{time_ago_in_words(paste.created_at)} ago"
+  = timeago(paste.created_at, :class=>'created_at')
   .paste-body
     ~ paste.preview
   = render :partial => 'tags', :object => paste.tags
