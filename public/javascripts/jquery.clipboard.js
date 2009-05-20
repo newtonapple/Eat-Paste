@@ -9,9 +9,12 @@
                 clip.glue(this);
                 clip.addEventListener('onMouseDown', function(){
                     link.html('copying...');
-                    jQuery.ajax({ 
+                    clip.reposition();
+                    $.ajax({ 
                         url: link.attr('href'),
-                        success: function(content) { clip.setText(content);},
+                        success: function(content) { 
+                            clip.setText(content);
+                        },
                         async: false
                     });
                 });
