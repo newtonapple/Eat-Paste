@@ -45,5 +45,5 @@ Rails::Initializer.run do |config|
   # config.i18n.default_locale = :de
   
   
-    config.action_controller.page_cache_directory = File.join(Rails.root, 'public/cache')
+  # config.action_controller.page_cache_directory = File.join(Rails.root, 'public/cache')
 end

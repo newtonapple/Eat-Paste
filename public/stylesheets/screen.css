@@ -97,8 +97,8 @@ a.copy {
   #header h1 {  font-size: 1.8em;  margin-left: 50px;  }
     #header h1 a { float: left; padding-right: 0.5em;}
   
-  #header form {  display: inline; float:right; margin-right: 50px;}
-    #header form label { font-size: 0.5em; }
+  #header form {  display: inline; float:right; margin-right: 50px; margin-top: 1em;}
+/*    #header form label { font-size: 0.5em; }*/
   #header input#q { 
     border: 1px solid #FFF; 
     -webkit-appearance: searchfield; 
@@ -201,3 +201,19 @@ a.copy {
   
     .section-header .language { color: #AAA; font-style: italic; }
     .new_paste textarea { margin: 1em auto;} 
+
+
+/* 500 & 400 */
+.error, .not-found {
+  text-align: center;
+}
+
+.error #message,  .not-found #message {
+  margin: auto 50px; 
+  clear: both;
+  color: #999;
+  padding: 1em;
+  background-color: #EFEFEF;
+  border: 1px solid #999;
+  font-size: 1.5em;
+}
