@@ -1,7 +1,7 @@
 # paste_having_fulltext_search.rb
 
 class Paste < ActiveRecord::Base
-  LANGUAGES = Uv.syntaxes.freeze
+  LANGUAGES = Uv.syntaxes.sort.freeze
   
   
   def self.language_or_default( language )
