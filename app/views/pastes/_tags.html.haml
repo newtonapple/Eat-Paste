@@ -2,4 +2,4 @@
   %ul.tags
     - tags.each do |tag|
       %li{:class => @tag_names.try(:[], tag.name) ? 'matched' : nil}
-        = link_to h(tag.name), search_pastes_path(:q => "t[#{h tag.name}]")
+        = link_to h(tag.name), search_path_for_tag_name(tag.name)

@@ -21,7 +21,7 @@
       - form_tag search_pastes_path, :method => :get do 
         %label{:for => 'q'}
           Search: 
-          = text_field_tag :q, h(params[:q])
+          = text_field_tag :q, h(params[:q]), :type => 'search'
           = submit_tag :search, :class => 'search'
     #content
       = yield
