@@ -1,6 +1,5 @@
 #paste
   #paste-header
-    
     = render :partial => 'tags', :object => @paste.tags
     = link_to 'copy', paste_path(@paste, :format => 'text'), :class => 'copy', :title => 'copy to clipboard'
     = link_to "( #{pluralize(@paste.line_count, 'line')} )", paste_path(@paste)
