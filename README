@@ -1,3 +1,5 @@
 == EatPaste
 
-A pastie clone in Rails.
+A Rails Pastie clone with tags.
+
+MIT License.
