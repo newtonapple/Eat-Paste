@@ -54,11 +54,11 @@ class Paste < ActiveRecord::Base
     tag_names = queried_tag_names.keys
     if queried_tag_names[tag_name]
       tag_names.delete(tag_name)
-      tag_names.any? ? "t[#{tag_names.join(',')}] #{query}".strip : query.strip
+      tag_names.any? ? "t[#{tag_names.sort.join(',')}] #{query}".strip : query.strip
     else 
       # note that tag_names here can never exceed max # of tags in real usage because filters always narrow down.
       tag_names.unshift(tag_name)      
-      "t[#{tag_names.join(',')}] #{query}".strip
+      "t[#{tag_names.sort.join(',')}] #{query}".strip
     end
   end
   

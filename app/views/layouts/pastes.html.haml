@@ -11,13 +11,13 @@
       $(function(){  $('.created_at').timeago(); $('a.copy').clickToClipboard(); });
     %meta{ 'http-equiv'=>'content-type', :content=>'text/html; charset=utf-8' }
     %title 
-      = @title
+      &= @title
   %body
     #header
       %h1
-        = link_to('Eat', new_paste_path) 
-        = link_to('Some', pastes_path)
-        = link_to('Paste', pastes_path)
+        = link_to 'Eat', new_paste_path, :class => @new_tab_selected
+        = link_to 'Some', pastes_path, :class => @some_tab_selected
+        = link_to 'Paste', pastes_path, :class => @index_tab_selected
       - form_tag search_pastes_path, :method => :get do 
         %label{:for => 'q'}
           Search: 

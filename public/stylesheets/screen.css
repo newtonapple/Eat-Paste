@@ -96,7 +96,7 @@ a.copy {
 }
   #header h1 {  font-size: 1.8em;  margin-left: 50px;  }
     #header h1 a { float: left; padding-right: 0.5em;}
-  
+    #header h1 a.selected { color: #FFF; }
   #header form {  display: inline; float:right; margin-right: 50px; margin-top: 1em;}
 /*    #header form label { font-size: 0.5em; }*/
   #header input#q { 
