@@ -1,11 +1,27 @@
 # paste_having_sections.rb
 class Paste < ActiveRecord::Base
+  
+  
+  def fetch_section( index )
+    sections.fetch(index.to_i)
+  rescue IndexError
+    raise Section::SectionNotFound
+  end
+  
+  
+  def sections
+    @sections ||= Section.parse(body, default_language)
+  end
+  
+  
   # Instead of actual association, we'll use a virtual Section object
   class Section
-    attr_accessor :title, :language, :body
     
     SECTION_PATTERN = /^## (.+) \[(.*)\]\W*/.freeze
+    SectionNotFound = Class.new(ActiveRecord::RecordNotFound)
     
+    
+    attr_accessor :title, :language, :body
     
     # Poor-man's parser
     def self.parse( body, default_language )
@@ -39,9 +55,4 @@ class Paste < ActiveRecord::Base
       self.title, self.language, self.body = title, language, ''
     end
   end  # Section
-  
-  
-  def sections
-    @sections ||= Section.parse(body, default_language)
-  end
-end
+end # Paste

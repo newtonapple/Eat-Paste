@@ -40,4 +40,5 @@ describe Paste::Section do
     section.title.should 
   end
   
+  
 end  # Paste::Section

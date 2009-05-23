@@ -30,7 +30,7 @@ class Paste < ActiveRecord::Base
   end
   
   
-  private 
+  private
     
     def generate_line_count
       self.line_count = body.split("\n").size

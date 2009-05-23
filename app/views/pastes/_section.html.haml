@@ -2,7 +2,8 @@
   .section-header
     %h2
       &= section.title
-    %span.language 
-      &= section.language
+    %span.language
+      &= "( #{section.language} )"
+    = link_to 'copy', paste_section_path(@paste, section_counter), :class => 'copy'
   .section-body
     ~ section.highlighted_body
