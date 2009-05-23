@@ -2,6 +2,8 @@ class Tag < ActiveRecord::Base
   has_many :taggings
   has_many :pastes, :through => :taggings
   
+  BLACKLISTED_NAME_CHARACTERS = /[<>&"\(\)\{\}\[\]\`;]/.freeze
+  
   def self.get_all_new_or_by_names( names )
     tags = find_all_by_name( names )
     new_tag_names = names - tags.collect(&:name)
@@ -25,6 +27,6 @@ class Tag < ActiveRecord::Base
   
   
   def name=( name )
-    self[:name] = name.to_s.strip.downcase
+    self[:name] = name.to_s.downcase.gsub(BLACKLISTED_NAME_CHARACTERS, ' ').squish
   end
 end

@@ -13,9 +13,7 @@ describe Tag do
   end
   
   
-  
-  
-  describe Tag, '#get_all_new_or_by_names' do
+  describe Tag, 'get_all_new_or_by_names' do
     
     it 'returns new tags when none found' do
       tag_names = %w[foo bar baz]
@@ -50,7 +48,39 @@ describe Tag do
       existing_tags.size.should == existing_tag_names.size
     end
     
-  end
+  end # Tag.get_all_new_or_by_names
   
+  
+  describe Tag, '#name=' do
+    before :each do
+      @tag = Tag.new
+    end
+    
+    
+    it 'strips out white spaces' do
+      @tag.name = '    foo    '
+      @tag.name.should == 'foo'
+      @tag.name = " \nfoo \n"
+      @tag.name.should == 'foo'
+    end
+    
+    
+    it 'downcases tag name' do
+      @tag.name = 'TaG NamE'
+      @tag.name.should == 'tag name'
+    end
+    
+    
+    it 'replaces multiple spaces with single space' do
+      @tag.name = " this  is a \t\t multiple-spaced\n\n tag     name "
+      @tag.name.should == 'this is a multiple-spaced tag name'
+    end
+    
+    
+    it 'replaces blacklist characters: < > & "  ` ( ) { } [ ] with single space' do
+      @tag.name = '`<script>alert("hello"); function(){return ([1] & [2])}</script>`'
+      @tag.name.should == 'script alert hello function return 1 2 /script'
+    end
+  end
   
 end

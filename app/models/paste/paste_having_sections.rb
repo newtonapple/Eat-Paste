@@ -17,9 +17,10 @@ class Paste < ActiveRecord::Base
   # Instead of actual association, we'll use a virtual Section object
   class Section
     
-    SECTION_PATTERN = /^## (.+) \[(.*)\]\W*/.freeze
+    # Error
     SectionNotFound = Class.new(ActiveRecord::RecordNotFound)
     
+    SECTION_PATTERN = /^## (.+) \[(.*)\]\W*/.freeze
     
     attr_accessor :title, :language, :body
     
