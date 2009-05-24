@@ -25,9 +25,19 @@ describe Paste::Section do
     sections[0].language.should == "ruby"
     sections[1].language.should == 'python'
     sections[2].language.should == 'unknown language'
-    sections[0].body.should == "#{ruby_body}\n"
-    sections[1].body.should == "#{python_body}\n"
+    sections[0].body.should == "#{ruby_body}"
+    sections[1].body.should == "#{python_body}"
     sections[2].body.should == ''
+  end
+  
+  
+  it "parses section with header and leading non-alphabetic body characters" do
+    paste = Paste.new :body => '## header [html]' + "\n" '<input type="search" name="q" />'
+    paste.sections[0].body.should == '<input type="search" name="q" />'
+    paste = Paste.new :body => '## header [plain_text]' + "\n" + '@something'
+    paste.sections[0].body.should == '@something'
+    paste = Paste.new :body => '## header [plain_text]' + "\n" + '******* TEST *******'
+    paste.sections[0].body.should == '******* TEST *******'
   end
   
   

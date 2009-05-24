@@ -77,7 +77,7 @@ describe Tag do
     end
     
     
-    it 'replaces blacklist characters: < > & "  ` ( ) { } [ ] with single space' do
+    it 'replaces blacklist characters: < > & "  ` ( ) { } [ ] ; with single space' do
       @tag.name = '`<script>alert("hello"); function(){return ([1] & [2])}</script>`'
       @tag.name.should == 'script alert hello function return 1 2 /script'
     end
