@@ -20,7 +20,7 @@ class Paste < ActiveRecord::Base
     # Error
     SectionNotFound = Class.new(ActiveRecord::RecordNotFound)
     
-    SECTION_PATTERN = /^## (.+) \[(.*)\]\s*/.freeze
+    SECTION_PATTERN = /^## (.+) \[(.*)\]\s*$\n/.freeze
     
     attr_accessor :title, :language, :body
     
@@ -32,10 +32,10 @@ class Paste < ActiveRecord::Base
           sections << new($1, $2)
         elsif sections.empty?
           new_section = new('', default_language )
-          new_section.body = token.strip
+          new_section.body = token.rstrip
           sections << new_section
         else
-          sections.last.body = token.strip
+          sections.last.body = token.rstrip
         end
       end
       sections

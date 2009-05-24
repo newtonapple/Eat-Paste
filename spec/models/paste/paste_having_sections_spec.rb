@@ -32,13 +32,25 @@ describe Paste::Section do
   
   
   it "parses section with header and leading non-alphabetic body characters" do
-    paste = Paste.new :body => '## header [html]' + "\n" '<input type="search" name="q" />'
-    paste.sections[0].body.should == '<input type="search" name="q" />'
-    paste = Paste.new :body => '## header [plain_text]' + "\n" + '@something'
-    paste.sections[0].body.should == '@something'
-    paste = Paste.new :body => '## header [plain_text]' + "\n" + '******* TEST *******'
-    paste.sections[0].body.should == '******* TEST *******'
+    paste = Paste.new :body => %Q{## header [html]\n<input type="search" name="q" />}
+    paste.sections[0].body.should == %Q{<input type="search" name="q" />}
+    paste = Paste.new :body => %Q{## header [plain_text]\n@something}
+    paste.sections[0].body.should == "@something"
+    paste = Paste.new :body => %Q{## header [plain_text]\n******* TEST *******}
+    paste.sections[0].body.should == "******* TEST *******"
   end
+  
+  
+  it "preserves section body's leading spaces" do
+    body = '
+      *
+     ***
+    *****  
+    '
+    paste = Paste.new :body => '## Section [plain_text]  ' + "\n" + body
+    paste.sections[0].body == body
+  end
+  
   
   
   it 'parses single section without headers' do
