@@ -7,17 +7,21 @@
     = stylesheet_link_tag 'uv/dawn'  
     = javascript_include_tag 'http://ajax.googleapis.com/ajax/libs/jquery/1.3.2/jquery.min.js'
     = javascript_include_tag :all 
-    %script{:type=>"text/javascript"}
-      $(function(){  $('.created_at').timeago(); $('a.copy').clickToClipboard(); });
+    :javascript
+      $(function(){  
+        $('.created_at').timeago();
+        $('a.copy').clickToClipboard();
+        EP.Hotkeys.bind();
+      });
     %meta{ 'http-equiv'=>'content-type', :content=>'text/html; charset=utf-8' }
     %title 
       &= @title
   %body
     #header
       %h1
-        = link_to 'Eat', new_paste_path, :class => @new_tab_selected
-        = link_to 'Some', pastes_path, :class => @some_tab_selected
-        = link_to 'Paste', pastes_path, :class => @index_tab_selected
+        = link_to 'Eat',   new_paste_path, :id => 'nav-new',  :class => @new_nav_selected
+        = link_to 'Some',  pastes_path,    :id => 'nav-some', :class => @some_nav_selected
+        = link_to 'Paste', pastes_path,    :id => 'nav-all',  :class => @index_nav_selected
       - form_tag search_pastes_path, :method => :get do 
         %label{:for => 'q'}
           Search: 

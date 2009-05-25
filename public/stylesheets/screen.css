@@ -126,6 +126,11 @@ a.copy {
   padding: 1em 1em 0; 
   clear:both ;
 } 
+  #pastes .selected, #pastes .selected pre, #pastes .selected ul.tags li {
+/*    background-color: #FEF4C5;*/
+/*    background-color: #FFFFE0;*/
+    background-color: #FFFEEB;
+  }
   
   #pastes .paste .language a {
     color: #000;

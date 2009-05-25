@@ -4,7 +4,7 @@ class PastesController < ApplicationController
   
   def index
     @pastes = Paste.previews.paginate(:page => params[:page], :count => {:select=>:id}, :per_page => 15)
-    @index_tab_selected = 'selected'
+    @index_nav_selected = 'selected'
     set_title "All Pastes - #{page}"
   end
 
@@ -22,7 +22,7 @@ class PastesController < ApplicationController
 
   def new
     @paste = Paste.new
-    @new_tab_selected = 'selected'
+    @new_nav_selected = 'selected'
     @tab_class={:eat => 'selected'}
     set_title('New Paste')
   end
