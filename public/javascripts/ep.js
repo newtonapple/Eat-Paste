@@ -58,7 +58,7 @@ var EP = {
         selectors: {
             allPastes: 'a#nav-all',
             newPaste:  'a#nav-new',
-            showPaste: '.language a',
+            showPaste: 'a.paste_id',
             pastes:    '#pastes .paste',
             search:    'input#q',
             prevPage:  '.pagination a.prev_page',
@@ -96,13 +96,12 @@ EP.Pastes.prototype =  {
 
 
 (function($) {    
-    
     $.fn.goToLink = function() {
         var a = $(this);
         if ( a.is('a') ) { window.location = a.attr('href'); }
         return this;
     };
-
+    
     
     $.fn.scrollToViewable = function( offset ) {
        var element = $(this);
@@ -110,10 +109,13 @@ EP.Pastes.prototype =  {
        var windowScrollTop = $(window).scrollTop();
        // element doesn't fit on to screen we'll scroll to the top of the element + offset
        if ( nextTop < windowScrollTop || (nextTop + element.height()) > (windowScrollTop + $(window).height()) ) {
-           $('html,body').animate({scrollTop: nextTop + (offset||-50)}, 200);
+           $.animateScrollTo(nextTop + (offset||-50), 200)
        } 
        return this;
     };
     
- 
+    
+    $.animateScrollTo = function( top, speed ) {
+        $('html,body').animate({scrollTop: top}, speed);
+    }
 })(jQuery);
