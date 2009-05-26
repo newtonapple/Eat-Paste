@@ -3,7 +3,7 @@ var EP = {
         bind: function() {
             var keyHandlers = EP.Hotkeys.setKeyHandlers();
             $(document).bind('keydown.EPHotkeys', function(event) {
-                if(e.ctrlKey||e.altKey||e.metaKey) { return true; }  // don't block modified keys (e.g. cmd-l)
+                if(event.ctrlKey || event.altKey || event.metaKey) { return true; }  // don't block modified keys (e.g. cmd-l)
                 if ( !$(event.target).is(':input') && keyHandlers[event.keyCode] ) {
                     keyHandlers[event.keyCode]();
                     return false;
