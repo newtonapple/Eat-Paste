@@ -38,10 +38,14 @@ class PastesController < ApplicationController
   
   
   def search
-    @tag_names, @query = *Paste.parse_search_query(params[:q])
-    @tag_names = @tag_names.index_by(&:to_s)
-    @pastes = Paste.previews.search(params[:q]).paginate(:page => params[:page], :count => {:select=>'pastes.id'}, :per_page => 15)
-    set_title "Search: #{params[:q]} - #{page}"
+    if params[:q].to_s =~ /^#(\d+)$/
+      redirect_to paste_path($1)
+    else
+      @tag_names, @query = *Paste.parse_search_query(params[:q])
+      @tag_names = @tag_names.index_by(&:to_s)
+      @pastes = Paste.previews.search(params[:q]).paginate(:page => params[:page], :count => {:select=>'pastes.id'}, :per_page => 15)
+      set_title "Search: #{params[:q]} - #{page}"
+    end
   end
   
   private 

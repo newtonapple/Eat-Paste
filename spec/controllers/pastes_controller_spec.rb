@@ -27,13 +27,23 @@ describe PastesController do
       response.should be_success
     end
   end
-
+  
+  
+  describe "GET search" do
+    it 'should redirect to paste if #id is given as the only search query' do
+      get 'search', :q => '#123'
+      response.should redirect_to('/pastes/123')
+    end
+  end
+  
+  
   describe "GET 'create'" do
     it "should be successful" do
       post :create, {:paste => {:body => 'hello'}}
       response.should be_redirect
     end
   end
+
 
   describe "GET 'new'" do
     it "should be successful" do
@@ -42,6 +52,7 @@ describe PastesController do
     end
   end
 
+  
   describe "GET 'show'" do
     before :each do 
       @paste = Paste.create :body => 'class A < B; def foo puts "foo"; end; end', :tag_names => 'foo, bar, baz'
