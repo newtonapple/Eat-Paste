@@ -1,5 +1,5 @@
 class PastesController < ApplicationController
-  caches_page :new, :show
+  caches_page :show
 
   
   def index
