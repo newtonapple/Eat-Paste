@@ -1,5 +1,5 @@
 # Be sure to restart your server when you modify this file
-
+require 'ruby-debug'
 # Specifies gem version of Rails to use when vendor/rails is not present
 RAILS_GEM_VERSION = '2.3.2' unless defined? RAILS_GEM_VERSION
 
@@ -35,7 +35,6 @@ Rails::Initializer.run do |config|
   # config.active_record.observers = :cacher, :garbage_collector, :forum_observer
   config.active_record.timestamped_migrations = false
   config.active_record.schema_format = :sql
-  
   # Set Time.zone default to the specified zone and make Active Record auto-convert to this zone.
   # Run "rake -D time" for a list of tasks for finding time zone names.
   config.time_zone = 'UTC'
@@ -46,4 +45,5 @@ Rails::Initializer.run do |config|
   
   
   # config.action_controller.page_cache_directory = File.join(Rails.root, 'public/cache')
+  ENV['RAILS_ASSET_ID'] = ''  # turn off assets timestamp
 end
