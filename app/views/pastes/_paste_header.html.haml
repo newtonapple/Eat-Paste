@@ -1,0 +1,3 @@
+= link_to "##{paste.id}", paste_path(paste), :class => 'paste_id'
+= link_to "Copy", paste_path(paste, :format => 'text'), :class => 'copy', :title => 'Copy to clipboard'
+= link_to "Refeed", refeed_paste_path(paste), :class => 'refeed', :title => 'Refeed'
