@@ -2,7 +2,8 @@
   #paste-header
     = render :partial => 'tags', :object => @paste.tags
     = link_to "##{@paste.id}", paste_path(@paste), :class => 'paste_id'
-    = link_to 'copy', paste_path(@paste, :format => 'text'), :class => 'copy', :title => 'copy to clipboard'
+    = link_to 'Copy', paste_path(@paste, :format => 'text'), :class => 'copy', :title => 'Copy to clipboard'
+    = link_to "Refeed", refeed_paste_path(@paste), :class => 'refeed', :title => 'Refeed'
     %span.line_count= "#{pluralize(@paste.line_count, 'line')}, "
     = timeago(@paste.created_at, :class=>'created_at')
   %div{:style=>"clear:both"}

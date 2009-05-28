@@ -40,12 +40,12 @@ describe SectionsController do
     it "should redirect to 404" do
       lambda {
         get 'show', :paste_id => @paste, :id => 2, :format => 'text'
-      }.should raise_error Paste::Section::SectionNotFound
+      }.should raise_error(Paste::Section::SectionNotFound)
     end
   end
   
   
-  describe "Named Rotues" do    
+  describe "Named Rotues" do
     it 'should route paste_section_path() correctly' do
       paste = stub_model(Paste, :id => 1)
       paste_section_path(paste, 0).should == '/pastes/1/sections/0'

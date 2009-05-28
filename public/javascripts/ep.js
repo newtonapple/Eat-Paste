@@ -36,17 +36,29 @@ var EP = {
                 handlers[keys.k] = function() { pastes.selectPrev(); };
                 handlers[keys.h] = function() { $(selectors.prevPage).goToLink(); };
                 handlers[keys.l] = function() { $(selectors.nextPage).goToLink(); };
+                handlers[keys.r] = function() {
+                   if ( pastes.current() ) {
+                       pastes.current().find(selectors.refeedPaste).goToLink();
+                   }                    
+                };
                 handlers[keys.enter] = function() { 
                     if ( pastes.current() ) {
-                        window.location = pastes.current().find(selectors.showPaste).attr('href'); 
+                        pastes.current().find(selectors.showPaste).goToLink(); 
                     }
                 };
+            }
+            else { // show page refeed key
+                var paste = $(selectors.refeedPaste, selectors.paste);
+                if ( paste.length === 1 ) { 
+                    handlers[keys.r]  = function(){ paste.goToLink(); }
+                }
             }
             return handlers;
         },
         keys: {
             e: 69,              // New
             p: 80,              // Pastes
+            r: 82,              // Refeed
             h: 72,              // Previous page
             l: 76,              // Next page    
             j: 74,              // Up
@@ -56,13 +68,15 @@ var EP = {
             forward_slash: 191  // Go to search bar
         },
         selectors: {
-            allPastes: 'a#nav-all',
-            newPaste:  'a#nav-new',
-            showPaste: 'a.paste_id',
-            pastes:    '#pastes .paste',
-            search:    'input#q',
-            prevPage:  '.pagination a.prev_page',
-            nextPage:  '.pagination a.next_page'
+            allPastes:  'a#nav-all',
+            newPaste:   'a#nav-new',
+            showPaste:  'a.paste_id',
+            refeedPaste:'a.refeed',
+            paste:      '#paste',
+            pastes:     '#pastes .paste',
+            search:     'input#q',
+            prevPage:   '.pagination a.prev_page',
+            nextPage:   '.pagination a.next_page'
         }
     },
     Pastes: function( pastes ) {

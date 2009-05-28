@@ -17,12 +17,40 @@ describe Paste do
   end
   
   
+  describe Paste, '#new_copy' do
+    before :each do 
+      @paste = Paste.new :default_language => 'ruby', :body => 'puts "hello"', :tag_names => 'foo, bar, baz'
+    end
+    
+    it 'returns new record with same copiable attribues for new records' do
+      paste = @paste.new_copy
+      paste.default_language.should == @paste.default_language
+      paste.body.should == @paste.body
+      paste.tags.each_with_index{ |tag, i| tag.name.should == @paste.tags[i].name }
+      paste.tag_names.should == @paste.tag_names
+      paste.save.should == true
+    end
+
+
+    it 'returns new record with same copiable attribues for saved record' do
+      paste = @paste.new_copy
+      paste.default_language.should == @paste.default_language
+      paste.body.should == @paste.body
+      paste.tag_names.should == 'foo, bar, baz'
+      paste.save.should == true
+      paste.reload
+      paste.tag_names.should == 'bar, baz, foo'
+    end
+  end
+  
+  
   describe Paste, '#tag_names=' do
     before(:each) do
       @existing_tag_size = 3
       @existing_tag_names = "foo, bar,  baz"
       @existing_tags = @existing_tag_names.split(',').collect{ |tag_name| Tag.create! :name => tag_name }.sort_by(&:name)
     end
+    
     
     it 'saves existing tags for new record' do
       paste = Paste.new :tag_names => @existing_tag_names, :body => ''
@@ -31,6 +59,7 @@ describe Paste do
       paste.reload
       paste.tags.should == @existing_tags
     end
+    
     
     it 'saves existing and new tags for new record' do
       new_tag_names = "aaa, bbb"

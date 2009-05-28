@@ -9,8 +9,18 @@ class Paste < ActiveRecord::Base
   named_scope :previews, :select => "pastes.id, pastes.line_count, pastes.default_language, pastes.preview, pastes.created_at"
   
   
+  def copiable_attributes
+    {:default_language => default_language, :body => body, :tag_names => tag_names}
+  end
+  
+  
+  def new_copy
+    self.class.new copiable_attributes
+  end
+  
+  
   def tag_names
-    taggings.empty? ? '' : tags.collect{|tag| tag.name}.join(', ')
+    tags.collect{|tag| tag.name}.join(', ')
   end
   
   

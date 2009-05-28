@@ -74,9 +74,14 @@ div.pagination { margin-bottom: 1em; }
   div.pagination a { padding:0.2em 0.5em;  /* better usability */ }
   div.pagination .disabled { color: #BBB; }
 
-/* Copy */
+/* Copy & Refeed*/
 a.copy { 
   background:transparent url(/images/clip.png) no-repeat scroll 0 -7px;
+  padding-left: 28px;
+}
+
+a.refeed { 
+  background:transparent url(/images/refeed.png) no-repeat scroll 0 -3px;
   padding-left: 28px;
 }
 
@@ -124,9 +129,10 @@ a.copy {
   padding: 1em 1em 0; 
   clear:both ;
 } 
+  #pastes .paste-header { color: #BBB; }
   #pastes .selected, #pastes .selected pre, #pastes .selected ul.tags li { background-color: #FFFEEB; }
   #pastes .paste .paste_id { color: #000; }  
-  #pastes .paste .line_count, #pastes .paste .language { color: #BBB; }
+/*  #pastes .paste .line_count, #pastes .paste .language { color: #BBB; }*/
   
   #pastes ul.tags li { 
     border-color: #BBB; 
@@ -174,11 +180,11 @@ a.copy {
   1em; padding-top: 4.5em;
 }
 
-  #paste #paste-header {  line-height: 1.2em; } 
+  #paste #paste-header {  color:#BBB; line-height: 1.2em; } 
   #paste #paste-header .tags {  float: right; } 
-  #paste #paste-header .copy {  float: left;} 
+  #paste #paste-header .copy {  float: left; padding-right: 0.25em ;} 
   #paste #paste-header .paste_id {  float: left; color: #333; font-size: 1.5em; } 
-  #paste #paste-header .line_count {  color: #BBB; padding-left:0.25em; padding-right:0.1em; } 
+  #paste #paste-header .line_count {  padding-right:0.1em; } 
   
   .section {  margin-top: 1em; margin-bottom: 2em; }
     .section-header { 
