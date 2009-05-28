@@ -2,7 +2,7 @@
 %html{ :lang=>'en_us', 'xml:lang'=>'en_us', :xmlns=>'http://www.w3.org/1999/xhtml'}
   %head
     = stylesheet_link_tag 'screen', 'uv/dawn', :cache => true
-    = javascript_include_tag 'http://ajax.googleapis.com/ajax/libs/jquery/1.3.2/jquery.min.js'
+    = javascript_include_tag JQUERY_INCLUDE_PATH
     = javascript_include_tag :all, :cache => true
     %meta{ 'http-equiv'=>'content-type', :content=>'text/html; charset=utf-8' }
     %title 

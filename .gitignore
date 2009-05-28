@@ -12,6 +12,8 @@ config/memcached.yml
 config/mongrel_cluster.yml
 config/initializers/session_store.rb
 
+coverage/*
+
 log/*.log
 log/mongrel*pid
 log/mongrel_debug/*

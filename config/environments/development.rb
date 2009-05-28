@@ -15,3 +15,5 @@ config.action_controller.perform_caching             = false
 
 # Don't care if the mailer can't send
 config.action_mailer.raise_delivery_errors = false
+
+JQUERY_INCLUDE_PATH = 'development/jquery-1.3.2'.freeze

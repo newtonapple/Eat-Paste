@@ -26,3 +26,5 @@ config.action_view.cache_template_loading            = true
 
 # Enable threaded mode
 # config.threadsafe!
+
+JQUERY_INCLUDE_PATH = 'http://ajax.googleapis.com/ajax/libs/jquery/1.3.2/jquery.min.js'.freeze
