@@ -28,9 +28,9 @@ A Rails Pastie "clone" with tags and keyboard shortcuts.
 * Rails 2.3.2
 * MySQL (it uses MySQL Fulltext search, i.e. Paste table is MyISAM)
 * Ultraviolet (a slightly slimmed down version of 0.10.2 is frozen in source, but Uv depends on other gems)
-** Textpow (required by Uv)
-*** Oniguruma the Regular Expression Engine (required by Textpow and might be the biggest pain to install)
-*** Oniguruma Ruby binding (best install through gem once you installed Oniguruma)
+* Textpow (required by Uv)
+* Oniguruma the Regular Expression Engine (required by Textpow and might be the biggest pain to install)
+* Oniguruma Ruby binding (best install through gem once you installed Oniguruma)
 * mislav-will_paginate
 
 
